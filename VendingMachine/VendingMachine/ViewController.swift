@@ -1,16 +1,8 @@
-//
-//  ViewController.swift
-//  VendingMachine
-//
-//  Created by bearfried on 2018. 8. 27..
-//  Copyright © 2018년 bearfried. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
 
-    // Model
+    // MARK: - MODEL
 
     enum Product: Int {
         case cola = 1000
@@ -46,7 +38,7 @@ class ViewController: UIViewController {
         }
     }
 
-    // UI
+    // MARK: - UI
 
     @IBOutlet weak var displayMoney: UILabel!
 
@@ -55,39 +47,39 @@ class ViewController: UIViewController {
     @IBOutlet weak var textInfo: UILabel!
 
     @IBAction func money100(_ sender: Any) {
-        processHandler("100")
+        handleProcess("100")
     }
 
     @IBAction func money500(_ sender: Any) {
-        processHandler("500")
+        handleProcess("500")
     }
 
     @IBAction func money1000(_ sender: Any) {
-        processHandler("1000")
+        handleProcess("1000")
     }
 
     @IBAction func selectCola(_ sender: Any) {
-        processHandler("cola")
+        handleProcess("cola")
     }
 
     @IBAction func selectCider(_ sender: Any) {
-        processHandler("cider")
+        handleProcess("cider")
     }
 
     @IBAction func selectFanta(_ sender: Any) {
-        processHandler("fanta")
+        handleProcess("fanta")
     }
 
     @IBAction func reset(_ sender: Any) {
-        processHandler("reset")
+        handleProcess("reset")
     }
 
-    // Logic
+    // MARK: - LOGIC
 
-    lazy var processHandler = handleProcess(State.initial())
+    lazy var handleProcess = processHandler(State.initial())
 
-    func handleProcess(_ state: State) -> (String) -> () {
-        var state = state //memoization
+    func processHandler(_ initState: State) -> (String) -> Void {
+        var state = initState // memoization
         return { command in
             state = self.operation(self.uiInput(command), self.uiOutput)(state)
         }
