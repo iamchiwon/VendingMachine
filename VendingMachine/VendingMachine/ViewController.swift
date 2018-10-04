@@ -4,7 +4,7 @@ class ViewController: UIViewController {
 
     // MARK: - MODEL
 
-    enum Product: Int {
+    enum Product: Int, CaseIterable {
         case cola = 1000
         case cider = 1100
         case fanta = 1200
@@ -19,6 +19,7 @@ class ViewController: UIViewController {
 
     enum Input {
         case moneyInput(Int)
+        case productInput(Product)
         case productSelect(Product)
         case reset
         case none
@@ -26,15 +27,23 @@ class ViewController: UIViewController {
 
     enum Output {
         case displayMoney(Int)
+        case displayStock(Product, Int)
         case productOut(Product)
         case shortMoneyError
+        case shortProductError
         case change(Int)
     }
 
     struct State {
         let money: Int
+        var stocks: [Product: Int]
+        
         static func initial() -> State {
-            return State(money: 0)
+            return State(money: 0, stocks: Product.AllCases().reduce([Product: Int](), { result, product in
+                var result = result
+                result[product] = 0
+                return result
+            }))
         }
     }
 
@@ -45,6 +54,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var productOut: UIImageView!
 
     @IBOutlet weak var textInfo: UILabel!
+    
+    @IBOutlet weak var colaStockLabel: UILabel!
+    
+    @IBOutlet weak var ciderStockLabel: UILabel!
+    
+    @IBOutlet weak var fantaStockLabel: UILabel!
+    
+    @IBOutlet weak var saleMode: UISegmentedControl!
 
     @IBAction func money100(_ sender: Any) {
         handleProcess("100")
@@ -59,19 +76,35 @@ class ViewController: UIViewController {
     }
 
     @IBAction func selectCola(_ sender: Any) {
-        handleProcess("cola")
+        if isOnSale() {
+            handleProcess("cola")
+        } else {
+            handleProcess("[in]cola")
+        }
     }
 
     @IBAction func selectCider(_ sender: Any) {
-        handleProcess("cider")
+        if isOnSale() {
+            handleProcess("cider")
+        } else {
+            handleProcess("[in]cider")
+        }
     }
 
     @IBAction func selectFanta(_ sender: Any) {
-        handleProcess("fanta")
+        if isOnSale() {
+            handleProcess("fanta")
+        } else {
+            handleProcess("[in]fanta")
+        }
     }
 
     @IBAction func reset(_ sender: Any) {
         handleProcess("reset")
+    }
+    
+    func isOnSale() -> Bool {
+        return saleMode.selectedSegmentIndex == 0
     }
 
     // MARK: - LOGIC
@@ -91,6 +124,9 @@ class ViewController: UIViewController {
             case "100": return .moneyInput(100)
             case "500": return .moneyInput(500)
             case "1000": return .moneyInput(1000)
+            case "[in]cola": return .productInput(.cola)
+            case "[in]cider": return .productInput(.cider)
+            case "[in]fanta": return .productInput(.fanta)
             case "cola": return .productSelect(.cola)
             case "cider": return .productSelect(.cider)
             case "fanta": return .productSelect(.fanta)
@@ -117,9 +153,25 @@ class ViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.productOut.image = nil
             }
+            
+        case .displayStock(let p, let stock):
+            switch p {
+            case .cola:
+                colaStockLabel.text = "\(stock)"
+            case .cider:
+                ciderStockLabel.text = "\(stock)"
+            case .fanta:
+                fantaStockLabel.text = "\(stock)"
+            }
 
         case .shortMoneyError:
             textInfo.text = "잔액이 부족합니다."
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.textInfo.text = ""
+            }
+            
+        case .shortProductError:
+            textInfo.text = "재고가 부족합니다."
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.textInfo.text = ""
             }
@@ -140,22 +192,44 @@ class ViewController: UIViewController {
             case .moneyInput(let m):
                 let money = state.money + m
                 out(.displayMoney(money))
-                return State(money: money)
+                return State(money: money, stocks: state.stocks)
+                
+            case .productInput(let p):
+                var stocks = state.stocks
+                stocks[p] = (stocks[p] ?? 0) + 1
+                out(.displayStock(p, stocks[p] ?? 0))
+                return State(money: state.money, stocks: stocks)
 
             case .productSelect(let p):
+                guard (state.stocks[p] ?? 0) > 0 else {
+                    out(.shortProductError)
+                    return state
+                }
+                
                 if state.money < p.rawValue {
                     out(.shortMoneyError)
                     return state
                 }
+                
                 out(.productOut(p))
                 let money = state.money - p.rawValue
                 out(.displayMoney(money))
-                return State(money: money)
+                
+                var stocks = state.stocks
+                if let productStock = stocks[p] {
+                    stocks[p] = productStock - 1
+                    out(.displayStock(p, productStock - 1))
+                } else {
+                    stocks[p] = 0
+                    out(.displayStock(p, 0))
+                }
+
+                return State(money: money, stocks: stocks)
 
             case .reset:
                 out(.change(state.money))
                 out(.displayMoney(0))
-                return State(money: 0)
+                return State(money: 0, stocks: state.stocks)
 
             case .none:
                 return state

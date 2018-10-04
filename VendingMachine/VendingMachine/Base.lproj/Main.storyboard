@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,6 +28,24 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="http://uci.or.kr/G903:PI0-000801754" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NL7-Aj-l1d">
                                 <rect key="frame" x="130" y="564" width="178" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBK-ib-2ns">
+                                <rect key="frame" x="49" y="120" width="9" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8D-ci-b50">
+                                <rect key="frame" x="116" y="120" width="9" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZT-de-4Rg">
+                                <rect key="frame" x="183" y="120" width="9" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -171,23 +189,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LKm-ZJ-I8z">
+                                <rect key="frame" x="82.5" y="181" width="143" height="29"/>
+                                <segments>
+                                    <segment title="판매중"/>
+                                    <segment title="재고관리중"/>
+                                </segments>
+                                <color key="tintColor" red="0.25949648022651672" green="0.25530508160591125" blue="0.25064495205879211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.21901676058769226" green="0.21465668082237244" blue="0.20987683534622192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pUn-uQ-Cve" firstAttribute="top" secondItem="3RI-Do-BKY" secondAttribute="bottom" constant="19" id="0IF-4I-uy6"/>
                             <constraint firstItem="A89-eP-qLj" firstAttribute="top" secondItem="3RI-Do-BKY" secondAttribute="top" constant="32" id="0Ud-ZS-OVt"/>
                             <constraint firstItem="HVA-dc-dKA" firstAttribute="leading" secondItem="3RI-Do-BKY" secondAttribute="trailing" constant="7" id="0co-od-xyj"/>
                             <constraint firstItem="zZ7-9m-soZ" firstAttribute="trailing" secondItem="3RI-Do-BKY" secondAttribute="trailing" constant="-55" id="1Ta-1G-z4Q"/>
                             <constraint firstItem="eY1-kX-gC8" firstAttribute="centerX" secondItem="3RI-Do-BKY" secondAttribute="centerX" constant="32" id="2rF-6Y-IXT"/>
+                            <constraint firstItem="O8D-ci-b50" firstAttribute="top" secondItem="0n5-b9-btw" secondAttribute="bottom" constant="4" id="6D0-7X-J8a"/>
                             <constraint firstItem="HVA-dc-dKA" firstAttribute="top" secondItem="sDV-G7-5Nj" secondAttribute="bottom" constant="8.5" id="6qF-2m-Rvt"/>
                             <constraint firstItem="0n5-b9-btw" firstAttribute="centerY" secondItem="A89-eP-qLj" secondAttribute="centerY" id="8aW-sp-5cd"/>
                             <constraint firstItem="zZ7-9m-soZ" firstAttribute="centerY" secondItem="3RI-Do-BKY" secondAttribute="centerY" constant="21" id="9qf-wV-AJH"/>
                             <constraint firstItem="jgl-Ds-shw" firstAttribute="top" secondItem="HVA-dc-dKA" secondAttribute="bottom" constant="7.5" id="C3p-eg-LmR"/>
                             <constraint firstItem="HVA-dc-dKA" firstAttribute="centerY" secondItem="3RI-Do-BKY" secondAttribute="centerY" id="EF6-nu-aGQ"/>
                             <constraint firstItem="aJj-vx-LvQ" firstAttribute="centerY" secondItem="0n5-b9-btw" secondAttribute="centerY" id="Jd5-g8-ZP9"/>
+                            <constraint firstItem="lBK-ib-2ns" firstAttribute="top" secondItem="A89-eP-qLj" secondAttribute="bottom" constant="4" id="KfM-74-wwa"/>
+                            <constraint firstItem="aZT-de-4Rg" firstAttribute="top" secondItem="aJj-vx-LvQ" secondAttribute="bottom" constant="4" id="LX2-ai-LjZ"/>
                             <constraint firstItem="r3d-Yj-Gso" firstAttribute="centerX" secondItem="aJj-vx-LvQ" secondAttribute="centerX" id="MJG-qk-1YX"/>
                             <constraint firstItem="sDV-G7-5Nj" firstAttribute="centerX" secondItem="HVA-dc-dKA" secondAttribute="centerX" id="N1d-Bb-zfi"/>
                             <constraint firstItem="NL7-Aj-l1d" firstAttribute="top" secondItem="3RI-Do-BKY" secondAttribute="bottom" constant="-1" id="NKd-AX-aF2"/>
+                            <constraint firstItem="LKm-ZJ-I8z" firstAttribute="centerX" secondItem="3RI-Do-BKY" secondAttribute="centerX" id="NLq-aW-IGM"/>
                             <constraint firstItem="Y2O-CK-yrq" firstAttribute="bottom" secondItem="3RI-Do-BKY" secondAttribute="bottom" constant="-49" id="Xft-S7-A0A"/>
                             <constraint firstItem="0k0-fe-dPG" firstAttribute="centerX" secondItem="0n5-b9-btw" secondAttribute="centerX" id="Ycd-UY-bSn"/>
                             <constraint firstItem="Imx-aw-Mel" firstAttribute="top" secondItem="A89-eP-qLj" secondAttribute="top" id="ZFZ-dL-PqL"/>
@@ -196,20 +227,28 @@
                             <constraint firstItem="pUn-uQ-Cve" firstAttribute="trailing" secondItem="3RI-Do-BKY" secondAttribute="trailing" id="aD6-jP-04r"/>
                             <constraint firstItem="jgl-Ds-shw" firstAttribute="centerX" secondItem="HVA-dc-dKA" secondAttribute="centerX" id="cUd-Zb-iZ3"/>
                             <constraint firstItem="3RI-Do-BKY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dsI-lR-8A0"/>
+                            <constraint firstItem="lBK-ib-2ns" firstAttribute="centerX" secondItem="Imx-aw-Mel" secondAttribute="centerX" id="egt-ig-Ojv"/>
                             <constraint firstItem="0k0-fe-dPG" firstAttribute="top" secondItem="0n5-b9-btw" secondAttribute="top" id="etA-ho-3cM"/>
+                            <constraint firstItem="O8D-ci-b50" firstAttribute="centerX" secondItem="0n5-b9-btw" secondAttribute="centerX" id="gUn-8l-mgs"/>
                             <constraint firstItem="Y2O-CK-yrq" firstAttribute="centerX" secondItem="3RI-Do-BKY" secondAttribute="centerX" id="ilM-DU-iGJ"/>
                             <constraint firstItem="3RI-Do-BKY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jid-uj-PN1"/>
+                            <constraint firstItem="LKm-ZJ-I8z" firstAttribute="top" secondItem="r3d-Yj-Gso" secondAttribute="bottom" constant="25" id="kZQ-co-JXo"/>
                             <constraint firstItem="0n5-b9-btw" firstAttribute="leading" secondItem="A89-eP-qLj" secondAttribute="trailing" constant="22" id="kny-cK-1CE"/>
                             <constraint firstItem="r3d-Yj-Gso" firstAttribute="top" secondItem="aJj-vx-LvQ" secondAttribute="top" id="qBG-7i-OFT"/>
                             <constraint firstItem="aJj-vx-LvQ" firstAttribute="leading" secondItem="0n5-b9-btw" secondAttribute="trailing" constant="22" id="sfM-kf-pD5"/>
                             <constraint firstItem="eY1-kX-gC8" firstAttribute="centerY" secondItem="3RI-Do-BKY" secondAttribute="centerY" constant="14.5" id="szS-Wo-Bg4"/>
                             <constraint firstItem="NL7-Aj-l1d" firstAttribute="trailing" secondItem="3RI-Do-BKY" secondAttribute="trailing" id="xoN-Ty-gdl"/>
+                            <constraint firstItem="aZT-de-4Rg" firstAttribute="centerX" secondItem="aJj-vx-LvQ" secondAttribute="centerX" id="xyh-3D-mew"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="ciderStockLabel" destination="O8D-ci-b50" id="Elw-K0-Kq2"/>
+                        <outlet property="colaStockLabel" destination="lBK-ib-2ns" id="9lF-oJ-qnd"/>
                         <outlet property="displayMoney" destination="eY1-kX-gC8" id="dHo-iC-PPK"/>
+                        <outlet property="fantaStockLabel" destination="aZT-de-4Rg" id="8Oy-W6-7bQ"/>
                         <outlet property="productOut" destination="Y2O-CK-yrq" id="8JT-Wz-u6a"/>
+                        <outlet property="saleMode" destination="LKm-ZJ-I8z" id="2Hj-hk-Pb3"/>
                         <outlet property="textInfo" destination="pUn-uQ-Cve" id="caU-b1-F74"/>
                     </connections>
                 </viewController>
@@ -220,7 +259,7 @@
     </scenes>
     <resources>
         <image name="cider" width="80" height="145"/>
-        <image name="cola" width="80" height="153"/>
+        <image name="cola" width="60" height="114.75"/>
         <image name="fanta" width="243" height="442"/>
         <image name="machine" width="349" height="614"/>
     </resources>
