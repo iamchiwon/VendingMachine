@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -171,6 +171,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpB-de-hhD">
+                                <rect key="frame" x="317" y="378" width="52" height="30"/>
+                                <state key="normal" title="재고추가"/>
+                                <connections>
+                                    <action selector="add:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hJS-li-6op"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -179,6 +186,7 @@
                             <constraint firstItem="HVA-dc-dKA" firstAttribute="leading" secondItem="3RI-Do-BKY" secondAttribute="trailing" constant="7" id="0co-od-xyj"/>
                             <constraint firstItem="zZ7-9m-soZ" firstAttribute="trailing" secondItem="3RI-Do-BKY" secondAttribute="trailing" constant="-55" id="1Ta-1G-z4Q"/>
                             <constraint firstItem="eY1-kX-gC8" firstAttribute="centerX" secondItem="3RI-Do-BKY" secondAttribute="centerX" constant="32" id="2rF-6Y-IXT"/>
+                            <constraint firstItem="gpB-de-hhD" firstAttribute="top" secondItem="jgl-Ds-shw" secondAttribute="bottom" constant="14" id="6Rf-xn-kda"/>
                             <constraint firstItem="HVA-dc-dKA" firstAttribute="top" secondItem="sDV-G7-5Nj" secondAttribute="bottom" constant="8.5" id="6qF-2m-Rvt"/>
                             <constraint firstItem="0n5-b9-btw" firstAttribute="centerY" secondItem="A89-eP-qLj" secondAttribute="centerY" id="8aW-sp-5cd"/>
                             <constraint firstItem="zZ7-9m-soZ" firstAttribute="centerY" secondItem="3RI-Do-BKY" secondAttribute="centerY" constant="21" id="9qf-wV-AJH"/>
@@ -201,6 +209,7 @@
                             <constraint firstItem="3RI-Do-BKY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jid-uj-PN1"/>
                             <constraint firstItem="0n5-b9-btw" firstAttribute="leading" secondItem="A89-eP-qLj" secondAttribute="trailing" constant="22" id="kny-cK-1CE"/>
                             <constraint firstItem="r3d-Yj-Gso" firstAttribute="top" secondItem="aJj-vx-LvQ" secondAttribute="top" id="qBG-7i-OFT"/>
+                            <constraint firstItem="gpB-de-hhD" firstAttribute="centerX" secondItem="jgl-Ds-shw" secondAttribute="centerX" id="qpB-J1-hLI"/>
                             <constraint firstItem="aJj-vx-LvQ" firstAttribute="leading" secondItem="0n5-b9-btw" secondAttribute="trailing" constant="22" id="sfM-kf-pD5"/>
                             <constraint firstItem="eY1-kX-gC8" firstAttribute="centerY" secondItem="3RI-Do-BKY" secondAttribute="centerY" constant="14.5" id="szS-Wo-Bg4"/>
                             <constraint firstItem="NL7-Aj-l1d" firstAttribute="trailing" secondItem="3RI-Do-BKY" secondAttribute="trailing" id="xoN-Ty-gdl"/>
@@ -220,7 +229,7 @@
     </scenes>
     <resources>
         <image name="cider" width="80" height="145"/>
-        <image name="cola" width="80" height="153"/>
+        <image name="cola" width="60" height="114.75"/>
         <image name="fanta" width="243" height="442"/>
         <image name="machine" width="349" height="614"/>
     </resources>

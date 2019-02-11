@@ -1,10 +1,17 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    /*
+     1. 음료수의 재고상태를 State에 추가하세요
+     2. 음료수의 재고를 채워넣기 위한 Input 명령을 추가해 넣으세요
+     3. 현재 음료수 개수에 따라 음료수 부족 에러를 추가해 넣으세요
+     4. 음료수가 출력되면 재고도 함께 차감되도록 하세요
+     */
 
     // MARK: - MODEL
 
-    enum Product: Int {
+    enum Product: Int, CaseIterable {
         case cola = 1000
         case cider = 1100
         case fanta = 1200
@@ -22,6 +29,7 @@ class ViewController: UIViewController {
         case productSelect(Product)
         case reset
         case none
+        case addInventory
     }
 
     enum Output {
@@ -29,12 +37,19 @@ class ViewController: UIViewController {
         case productOut(Product)
         case shortMoneyError
         case change(Int)
+        case shortStockError(Product)
+        case displayProductStock(Int)
     }
 
     struct State {
         let money: Int
+        let stocks : [Product : Int]
         static func initial() -> State {
-            return State(money: 0)
+            return State(money: 0, stocks: Product.allCases.reduce([Product : Int](), { (result, product) in
+                var result = result
+                result[product] = 3
+                return result
+            }))
         }
     }
 
@@ -73,6 +88,10 @@ class ViewController: UIViewController {
     @IBAction func reset(_ sender: Any) {
         handleProcess("reset")
     }
+    
+    @IBAction func add(_ sender: Any) {
+        handleProcess("add")
+    }
 
     // MARK: - LOGIC
 
@@ -95,6 +114,7 @@ class ViewController: UIViewController {
             case "cider": return .productSelect(.cider)
             case "fanta": return .productSelect(.fanta)
             case "reset": return .reset
+            case "add" : return .addInventory
             default: return .none
             }
         }
@@ -129,6 +149,17 @@ class ViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.textInfo.text = ""
             }
+        case .shortStockError(let p):
+            textInfo.text = "\(p.name())의 재고가 부족합니다. 재고를 채워주세요."
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.textInfo.text = ""
+            }
+            
+        case .displayProductStock(let s):
+            textInfo.text = "\(s)개 남았습니다."
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.textInfo.text = ""
+            }
         }
     }
 
@@ -140,22 +171,44 @@ class ViewController: UIViewController {
             case .moneyInput(let m):
                 let money = state.money + m
                 out(.displayMoney(money))
-                return State(money: money)
+                return State(money: money, stocks: state.stocks)
 
             case .productSelect(let p):
                 if state.money < p.rawValue {
                     out(.shortMoneyError)
                     return state
                 }
+                
+                if let stock = state.stocks[p], stock == 0{
+                    out(.shortStockError(p))
+                    return state
+                }
+                
                 out(.productOut(p))
                 let money = state.money - p.rawValue
                 out(.displayMoney(money))
-                return State(money: money)
-
+                
+                var stocks = (state.stocks)
+                if stocks[p] != nil  {
+                    stocks[p]! -= 1
+                    out(.displayProductStock(stocks[p]!))
+                }
+                
+                return State(money: money, stocks: stocks)
+                
             case .reset:
                 out(.change(state.money))
                 out(.displayMoney(0))
-                return State(money: 0)
+                return State(money: 0, stocks: state.stocks)
+                
+            case .addInventory:
+                var stocks = state.stocks
+                stocks.forEach({ (product, stock) in
+                    if stock == 0 {
+                        stocks[product]! = 3
+                    }
+                })
+                return State(money: state.money, stocks: stocks)
 
             case .none:
                 return state
